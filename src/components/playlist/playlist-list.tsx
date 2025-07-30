@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Plus } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { useAuth } from "@/lib/store/auth-context"
 
 interface Playlist {

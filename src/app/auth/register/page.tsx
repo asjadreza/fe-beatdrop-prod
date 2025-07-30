@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -75,6 +74,7 @@ export default function RegisterPage() {
         userProfilePic: profilePic,
       });
     } catch (err) {
+      console.log("Registeration failed", err);      
       setError("Registration failed. Please try again.");
     }
   };

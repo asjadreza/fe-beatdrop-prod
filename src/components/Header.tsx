@@ -32,6 +32,57 @@ const Header = () => {
     setShowDropdown(false);
   };
 
+  // const handleUploadMusic = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!titleRef.current?.value || !musicFileRef.current?.files?.[0]) {
+  //     toast({ title: 'Missing fields', description: 'Title and music file are required', variant: 'destructive' });
+  //     return;
+  //   }
+    
+  //   // Check file sizes
+  //   const musicFile = musicFileRef.current.files[0];
+  //   const posterFile = posterFileRef.current?.files?.[0];
+    
+  //   // Music file size check (10MB = 10 * 1024 * 1024 bytes)
+  //   if (musicFile.size > 10 * 1024 * 1024) {
+  //     toast({ title: 'File too large', description: 'Music file must be less than 10MB', variant: 'destructive' });
+  //     return;
+  //   }
+    
+  //   // Poster file size check (2MB = 2 * 1024 * 1024 bytes)
+  //   if (posterFile && posterFile.size > 2 * 1024 * 1024) {
+  //     toast({ title: 'File too large', description: 'Poster image must be less than 2MB', variant: 'destructive' });
+  //     return;
+  //   }
+    
+  //   setUploading(true);
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('title', titleRef.current.value);
+  //     formData.append('musicFile', musicFile);
+  //     if (posterFile) {
+  //       formData.append('musicPoster', posterFile);
+  //     }
+  //     const token = localStorage.getItem('token');
+  //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/music`, {
+  //       method: 'POST',
+  //       headers: { Authorization: `Bearer ${token}` },
+  //       body: formData,
+  //     });
+  //     if (!res.ok) {
+  //       const err = await res.json();
+  //       throw new Error(err.message || 'Failed to upload');
+  //     }
+  //     toast({ title: 'Success', description: 'Music uploaded successfully!' });
+  //     setShowUploadModal(false);
+  //     router.push('/main');
+  //   } catch (err: any) {
+  //     toast({ title: 'Upload failed', description: err.message, variant: 'destructive' });
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // };
+
   const handleUploadMusic = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!titleRef.current?.value || !musicFileRef.current?.files?.[0]) {
@@ -76,13 +127,20 @@ const Header = () => {
       toast({ title: 'Success', description: 'Music uploaded successfully!' });
       setShowUploadModal(false);
       router.push('/main');
-    } catch (err: any) {
-      toast({ title: 'Upload failed', description: err.message, variant: 'destructive' });
+    } catch (err: unknown) {
+      let errorMessage = 'Upload failed';
+      if (err instanceof Error) {
+        errorMessage = err.message;
+      } else if (typeof err === 'string') {
+        errorMessage = err;
+      }
+      toast({ title: 'Upload failed', description: errorMessage, variant: 'destructive' });
     } finally {
       setUploading(false);
     }
   };
 
+  
   return (
     <header className="h-16 bg-[#121212] flex items-center justify-between px-6 border-b border-[#333]">
       <div className="flex items-center">

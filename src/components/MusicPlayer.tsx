@@ -13,6 +13,7 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [songData, setSongData] = useState<any>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [addToPlaylistOpen, setAddToPlaylistOpen] = useState(false);
@@ -206,8 +207,8 @@ const MusicPlayer = () => {
     // Cleanup on component unmount
     return () => {
       // Store the current position before unmounting (if needed for persistence)
-      const lastPosition = audio.currentTime;
-      const lastSongId = player.activeId;
+      // const lastPosition = audio.currentTime;
+      // const lastSongId = player.activeId;
       
       // Stop and clean up
       audio.pause();
@@ -480,11 +481,12 @@ const MusicPlayer = () => {
     if (isPlaying && audioRef.current && !audioRef.current.src && songData && songData.musicFile) {
       audioRef.current.src = songData.musicFile;
       audioRef.current.play().catch(error => {
-        // console.error("Error playing audio after reset:", error);
+        console.error("Error playing audio after reset:", error);
         setIsPlaying(false);
       });
     }
   }, [isPlaying, songData]);
+
 
   return (
     <>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { Play, Heart, ListPlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import usePlayer from "@/hooks/use-player"
@@ -23,7 +22,6 @@ interface Music {
 }
 
 export function CurrentlyPlaying() {
-  const router = useRouter()
   const player = usePlayer()
   const [music, setMusic] = useState<Music[]>([])
   const [addToPlaylistOpen, setAddToPlaylistOpen] = useState(false)

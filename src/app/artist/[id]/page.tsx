@@ -3,9 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Play, Clock, Pause } from 'lucide-react';
-import { Music, getMusicByArtist, getAllMusic } from '@/lib/api/music';
+import { Music, getAllMusic } from '@/lib/api/music';
 import { User } from '@/lib/api/auth';
-import { useAuth } from '@/lib/store/auth-context';
 import usePlayer from '@/hooks/use-player';
 
 // Helper function to format duration
@@ -25,7 +24,7 @@ export default function ArtistPage({ params }: PageProps) {
   const resolvedParams = React.use(params);
   const id = resolvedParams.id;
   
-  const { token } = useAuth();
+  // const { token } = useAuth();
   const player = usePlayer();
   const [artist, setArtist] = useState<User | null>(null);
   const [artistSongs, setArtistSongs] = useState<Music[]>([]);
@@ -145,7 +144,8 @@ export default function ArtistPage({ params }: PageProps) {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold">Artist Not Found</h2>
-        <p className="text-gray-400 mt-2">The artist you're looking for doesn't exist or has no music.</p>
+        {/* <p className="text-gray-400 mt-2">The artist you're looking for doesn't exist or has no music.</p> */}
+        <p className="text-gray-400 mt-2">The artist you&apos;re looking for doesn&apos;t exist or has no music.</p>
       </div>
     );
   }
@@ -237,7 +237,7 @@ export default function ArtistPage({ params }: PageProps) {
           </table>
         ) : (
           <div className="text-center py-8 text-gray-400">
-            This artist hasn't uploaded any songs yet.
+            This artist has not uploaded any songs yet.
           </div>
         )}
       </div>

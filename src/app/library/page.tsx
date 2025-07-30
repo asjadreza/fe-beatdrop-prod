@@ -78,10 +78,11 @@ const EditMusicModal: React.FC<EditMusicModalProps> = ({
       toast({ title: "Success", description: "Music updated successfully!" });
       onSuccess();
       onClose();
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as {message?: string};
       toast({
         title: "Update failed",
-        description: err.message,
+        description: error.message || "An unknown error is occurred",
         variant: "destructive",
       });
     } finally {
@@ -372,10 +373,11 @@ export default function Library() {
             description: "Track deleted successfully",
           });
           if (onDeleteSuccess) onDeleteSuccess();
-        } catch (err: any) {
+        } catch (err) {
+          const error = err as {message?: string};
           toast({
             title: "Delete failed",
-            description: err.message,
+            description: error.message || "An unknown error is occurred",
             variant: "destructive",
           });
         } finally {
@@ -586,7 +588,7 @@ export default function Library() {
             ) : (
               <div className="text-center py-12">
                 <p className="text-gray-400">
-                  You haven't downloaded any songs yet.
+                  You haven&apos;t downloaded any songs yet.
                 </p>
               </div>
             )
@@ -610,7 +612,7 @@ export default function Library() {
             ) : (
               <div className="text-center py-12">
                 <p className="text-gray-400">
-                  You haven't uploaded any music yet.
+                  You haven&apos;t uploaded any music yet.
                 </p>
               </div>
             )

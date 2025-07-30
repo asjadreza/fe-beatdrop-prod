@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Play, Clock, User2, Pause } from 'lucide-react';
-import { getPlaylistById, Playlist, PlaylistMusic } from '@/lib/api/playlist';
-import { useAuth } from '@/lib/store/auth-context';
+import { getPlaylistById, Playlist } from '@/lib/api/playlist';
 import usePlayer from '@/hooks/use-player';
 
 // Helper function to format duration
@@ -33,8 +32,6 @@ export default function PlaylistPage({ params }: PageProps) {
   // Properly unwrap params using React.use()
   const resolvedParams = React.use(params);
   const id = resolvedParams.id;
-  
-  const { token } = useAuth();
   const player = usePlayer();
   const [playlist, setPlaylist] = useState<Playlist | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -150,7 +147,7 @@ export default function PlaylistPage({ params }: PageProps) {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold">Playlist Not Found</h2>
-        <p className="text-gray-400 mt-2">The playlist you're looking for doesn't exist or has been deleted.</p>
+        <p className="text-gray-400 mt-2">The playlist you&apos;re looking for doesn&apos;t exist or has been deleted.</p>
       </div>
     );
   }

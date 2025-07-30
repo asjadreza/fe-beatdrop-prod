@@ -46,7 +46,7 @@ export default function Explore() {
   const [loading, setLoading] = useState(true);
   const [addToPlaylistOpen, setAddToPlaylistOpen] = useState(false);
   const [selectedMusicId, setSelectedMusicId] = useState<string>("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [_isAuthenticated, setIsAuthenticated] = useState(false);
   const player = usePlayer();
 
   // Categories
@@ -292,7 +292,7 @@ export default function Explore() {
                     No Playlists Found
                   </h3>
                   <p className="text-gray-400 mb-4">
-                    You haven't created any playlists yet.
+                    You haven&apos;t created any playlists yet.
                   </p>
                 </div>
               )}

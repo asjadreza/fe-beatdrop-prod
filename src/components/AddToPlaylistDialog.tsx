@@ -136,7 +136,7 @@ export function AddToPlaylistDialog({
               ))
             ) : (
               <div className="text-center py-4 text-neutral-500 dark:text-neutral-400">
-                You don't have any playlists yet.
+                You don&apos;t have any playlists yet.
               </div>
             )}
           </div>

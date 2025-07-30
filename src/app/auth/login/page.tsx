@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -28,7 +27,6 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const { login, isLoading } = useAuth();
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<LoginFormValues>({
@@ -44,6 +42,7 @@ export default function LoginPage() {
     try {
       await login(data);
     } catch (err) {
+      console.log("Login failed", err);
       setError("Invalid username or password");
     }
   };
@@ -122,7 +121,7 @@ export default function LoginPage() {
           </Form>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-gray-400">Don't have an account? </span>
+            <span className="text-gray-400">Don&apos;t have an account? </span>
             <Link
               href="/auth/register"
               className="text-green-600 hover:text-green-500 font-medium"

@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         description: `Welcome back, ${response.user.username}!`,
       });
       router.push('/main');
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       console.error('Login error:', error);
       toast({
         title: 'Login failed',
@@ -95,7 +95,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         description: `Welcome to BeatDrop, ${response.user.username}!`,
       });
       router.push('/main');
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       console.error('Registration error:', error);
       toast({
         title: 'Registration failed',

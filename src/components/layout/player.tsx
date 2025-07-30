@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import usePlayer from "@/hooks/use-player"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
